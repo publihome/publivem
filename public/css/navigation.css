@@ -1,0 +1,15 @@
+.nav-left{
+    background: #212529;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    left: 0px;
+}
+
+.nav-left > a{
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+
+
+}
