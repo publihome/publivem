@@ -26,6 +26,12 @@ class ProductsController extends Controller
         return view('products.index',$data);
     }
 
+    public function producstByCategory($id){
+        $data["categoryName"]= $this->productsModel->getNameCategory($id);
+        
+        return view('products.products',$data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

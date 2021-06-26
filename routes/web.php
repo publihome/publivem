@@ -21,4 +21,6 @@ use App\Http\Controllers\ProductsController;
 
 
 Route::resource('/', DashboardController::class);
-Route::resource('/products', ProductsController::class);
+// Route::resource('/products', ProductsController::class);
+Route::get('/products_by_category', [ProductsController::class,'index']);
+Route::get('/products/category/{category_id}', [ProductsController::class,'producstByCategory']);

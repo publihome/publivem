@@ -9,3 +9,14 @@
     transform: scale(1.05);
 
 }
+
+
+.btn-add{
+    position: fixed;
+    right: 3em;
+    bottom: 3em;
+}
+.btn-add > button{
+    width: 60px;
+    height: 60px;
+}
