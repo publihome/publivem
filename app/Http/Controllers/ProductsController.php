@@ -81,8 +81,8 @@ class ProductsController extends Controller
         $attributes = $this->productsModel->getAtributtesbycategory($category_id);
         $productsLength = count($products);
         $attributesLength = count($attributes);
-        $data['products'] = $products;
-        $data['attributes'] = $attributes;
+        // $data['products'] = $products;
+        // $data['attributes'] = $attributes;
 
         for($p = 0; $p < $productsLength; $p ++){
             for($at = 0; $at < $attributesLength; $at ++){
