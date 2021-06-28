@@ -19,6 +19,7 @@ class Categories extends Migration
             $table->string("name");
             $table->timestamps();
         });
+
     }
 
     /**
@@ -29,5 +30,8 @@ class Categories extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('categories');
+        
+
     }
 }

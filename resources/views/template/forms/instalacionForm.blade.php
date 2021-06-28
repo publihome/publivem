@@ -1,4 +1,3 @@
-@csrf
 <div class="form-group">
     <label for="name">Nombre</label>
     <input type="text" name="name" id="name" class="form-control">
@@ -15,6 +14,6 @@
 </div>
 
 <div class="form-group">
-    <label for="provide">cliente proporciona</label>
-    <input type="text" name="provide" id="provide" class="form-control">
+    <label for="cliente proporcina">cliente proporciona</label>
+    <input type="text" name="cliente_proporciona" id="cliente_proporciona" class="form-control">
 </div>

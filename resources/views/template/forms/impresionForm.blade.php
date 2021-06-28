@@ -1,17 +1,17 @@
-@csrf
+
 <div class="form-group">
     <label for="name">Nombre</label>
     <input type="text" name="name" id="name" class="form-control">
 </div>
 
 <div class="form-group">
-    <label for="description">decripción</label>
-    <input type="text" name="description" id="description" class="form-control">
+    <label for="descripcion">decripción</label>
+    <input type="text" name="descripcion" id="descripcion" class="form-control">
 </div>
 
 <div class="form-group">
-    <label for="aplications">Aplicaciones</label>
-    <input type="text" name="aplications" id="aplications" class="form-control">
+    <label for="aplicaciones">Aplicaciones</label>
+    <input type="text" name="aplicaciones" id="aplicaciones" class="form-control">
 </div>
 
 <div class="form-group">

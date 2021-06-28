@@ -19,6 +19,45 @@ class Products extends Model
     public function getNameCategory($id_category){
         $sql = DB::table('categories')->where('id', "=", $id_category)->pluck('name');
         return $sql;
+    }
+    
+    public function addProduct($data){
+        $sql = DB::table('products')->insert($data);
+
+    }
+    public function insertAttr($id_at, $id_prod, $value){
+        $data = array (
+            "attribute_id" => $id_at,
+            "product_id" => $id_prod,
+            "value" => $value,
+        );
+
+        $sql = DB::table('attributes_by_product')->insert($data);
+
+    }
+
+    public function getAttrbyName($nameAtribute){
+        return DB::table('attributes')->where('name', "=", $nameAtribute)->pluck('id');
+    }
+
+
+    public function getProductsBycategory($category_id){
+        $sql = DB::table('products')
+                ->where('products.category_id', "=", $category_id)
+                ->get();
+                return $sql;
+
+    }
+
+    public function getAtributtesbycategory($category_id){
+        $sql = DB::table('attributes_by_product')
+                ->join('attributes', 'attributes.id', "=", 'attributes_by_product.attribute_id') 
+                ->join('products', "products.id", "=", "attributes_by_product.product_id")
+                ->join('categories', 'categories.id', '=','products.category_id')
+                ->where('categories.id', "=", $category_id)
+                ->select('products.id', 'attributes_by_product.value', 'attributes.name as attributeName')
+                ->get();
+                return $sql;
 
     }
 }

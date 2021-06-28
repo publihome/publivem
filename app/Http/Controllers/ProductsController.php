@@ -51,6 +51,21 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         //
+        $dataProduct = $request->only('category_id','name','price_men', 'unit');
+        $dataattrib = $request->except('category_id','name','price_men', 'unit');
+        
+        $this->productsModel->addProduct($dataProduct);
+        $id_product = Products::latest('id')->first(); 
+       $at = array();
+        foreach($dataattrib as $attr => $item){
+            
+            // array_push($at, $attr);
+            // array_push($at, $this->productsModel->getAttrbyName($attr));
+            $id_attrib = $this->productsModel->getAttrbyName($attr);
+            $this->productsModel->insertAttr($id_attrib[0],$id_product->id,$item);
+        }
+        return response()->json('ok', 200);
+        
     }
 
     /**
@@ -59,9 +74,24 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function show(Products $products)
+    public function show($category_id)
     {
         //
+        $products = $this->productsModel->getProductsBycategory($category_id);
+        $attributes = $this->productsModel->getAtributtesbycategory($category_id);
+        $productsLength = count($products);
+        $attributesLength = count($attributes);
+        $data['products'] = $products;
+        $data['attributes'] = $attributes;
+
+        for($p = 0; $p < $productsLength; $p ++){
+            for($at = 0; $at < $attributesLength; $at ++){
+                if($attributes[$at]->id == $products[$p]->id){
+                    $products[$p]->$attributes[$at]->attributeName = $attributes[$at]->value;
+                }               
+            }
+        }
+        return response()->json($products, 200);
     }
 
     /**
@@ -70,9 +100,11 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function edit(Products $products)
+    public function edit($category_id)
     {
         //
+
+        
     }
 
     /**
