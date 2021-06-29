@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\EmployeesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +24,6 @@ use App\Http\Controllers\ProductsController;
 
 Route::resource('/', DashboardController::class);
 Route::resource('/products', ProductsController::class)->except('index');
+Route::resource('/employees', EmployeesController::class);
 Route::get('/products_by_category', [ProductsController::class,'index']);
 Route::get('/products/category/{category_id}', [ProductsController::class,'producstByCategory']);
