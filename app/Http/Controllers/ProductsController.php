@@ -17,7 +17,7 @@ class ProductsController extends Controller
     public function __construct()
     {
         $this->productsModel = new Products;
-        
+
     }
     public function index()
     {
@@ -28,7 +28,7 @@ class ProductsController extends Controller
 
     public function producstByCategory($id){
         $data["categoryName"]= $this->productsModel->getNameCategory($id);
-        
+
         return view('products.products',$data);
     }
 
@@ -53,19 +53,19 @@ class ProductsController extends Controller
         //
         $dataProduct = $request->only('category_id','name','price_men', 'unit');
         $dataattrib = $request->except('category_id','name','price_men', 'unit');
-        
+
         $this->productsModel->addProduct($dataProduct);
-        $id_product = Products::latest('id')->first(); 
+        $id_product = Products::latest('id')->first();
        $at = array();
         foreach($dataattrib as $attr => $item){
-            
+
             // array_push($at, $attr);
             // array_push($at, $this->productsModel->getAttrbyName($attr));
             $id_attrib = $this->productsModel->getAttrbyName($attr);
             $this->productsModel->insertAttr($id_attrib[0],$id_product->id,$item);
         }
         return response()->json('ok', 200);
-        
+
     }
 
     /**
@@ -79,19 +79,12 @@ class ProductsController extends Controller
         //
         $products = $this->productsModel->getProductsBycategory($category_id);
         $attributes = $this->productsModel->getAtributtesbycategory($category_id);
-        $productsLength = count($products);
-        $attributesLength = count($attributes);
-        // $data['products'] = $products;
-        // $data['attributes'] = $attributes;
-
-        for($p = 0; $p < $productsLength; $p ++){
-            for($at = 0; $at < $attributesLength; $at ++){
-                if($attributes[$at]->id == $products[$p]->id){
-                    $products[$p]->$attributes[$at]->attributeName = $attributes[$at]->value;
-                }               
-            }
-        }
-        return response()->json($products, 200);
+       
+        $data['products'] = $products;
+        
+        $data['attributes'] = $attributes;
+        
+        return response()->json($data, 200);
     }
 
     /**
@@ -104,7 +97,7 @@ class ProductsController extends Controller
     {
         //
 
-        
+
     }
 
     /**

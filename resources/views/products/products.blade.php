@@ -9,6 +9,16 @@
 </div>
 
 <div class="table" id="table">
+    <table class="table">
+        <thead >
+          <tr id="tr">
+           
+          </tr>
+        </thead>
+        <tbody id="tBody">
+          
+        </tbody>
+      </table>
 
 </div>
 
