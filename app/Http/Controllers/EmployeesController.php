@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employees;
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
@@ -41,7 +42,7 @@ class EmployeesController extends Controller
         $dataEmployes = $request->except('_token');
         Employees::insert($dataEmployes);
 
-        return view("employees.index")->with("message","Empleado agregado");
+        return redirect("employees")->with("message","Empleado agregado");
     }
 
     /**
@@ -76,9 +77,13 @@ class EmployeesController extends Controller
      * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employees $employees)
+    public function update(Request $request, $id)
     {
         //
+        $data = $request->except('_token', '_method');
+        Employees::where('id', '=', $id)->update($data);
+
+        return redirect('employees')->with("message", "Empleado modificado");
     }
 
     /**
@@ -92,5 +97,10 @@ class EmployeesController extends Controller
         Employees::destroy($id);
         return redirect('employees')->with('message', 'Empleado eliminado con exito');
         //
+    }
+
+    public function getEmployees(){
+        $employees = Employees::all();
+        return response()->json($employees, 200);
     }
 }

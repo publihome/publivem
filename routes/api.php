@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductsController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\ExpensesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/products/{category_id}',[ProductsController::class,'show']);
 Route::post('/products',[ProductsController::class,'store']);
 Route::get('/employees/{id}', [EmployeesController::class,'show']);
+Route::get('/employees', [EmployeesController::class,'getEmployees']);
+
+Route::get('/expenses/{expense_id}', [ExpensesController::class,'show']);
 Route::patch('/employees', [EmployeesController::class,'update']);

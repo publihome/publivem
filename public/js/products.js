@@ -3,7 +3,6 @@ let form = document.querySelector("#formAddProduct")
 const path = window.location.href
 let c = path.lastIndexOf('/')
 let id_category = path.slice(c+1,c+2)
-console.log(form)
 let urlbase = "http://localhost:8000/api/products" 
 let productsdata = []
 const TableEsp = {
@@ -40,8 +39,6 @@ function getProductsByCategory(){
     fetch(`${urlbase}/${id_category}`)
     .then(response => response.json())
     .then(data => joinData(data))
-
-   
 }
 
 
@@ -88,6 +85,8 @@ function createTable(){
 
      console.log(productsdata)
 }
+
+
 
 
 

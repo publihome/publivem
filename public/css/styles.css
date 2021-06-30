@@ -20,3 +20,8 @@
     width: 60px;
     height: 60px;
 }
+
+.content > p{
+    margin: 0;
+
+}
