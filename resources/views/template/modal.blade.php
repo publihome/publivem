@@ -6,7 +6,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form id="formAddProduct">
+            <form id="formAddProduct" class="form">
                 @if($categoryName[0] == "Impresión en gran formato")
                 @include('template.forms.impresionForm')
                     

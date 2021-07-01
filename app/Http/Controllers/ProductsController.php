@@ -93,9 +93,13 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function edit($category_id)
+    public function edit($category_id, $product_id)
     {
         //
+        $data["products"] = $this->productsModel->getProductsByIdAndIdCategory($category_id, $product_id);
+        $data["attributes"] = $this->productsModel->getAtributtesbyIdAndIdCategory($category_id, $product_id);
+        return response()->json($data, 200);
+        
 
 
     }
@@ -118,8 +122,11 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Products $products)
+    public function destroy($product_id)
     {
         //
+        $this->productsModel->deleteAtributesProduct($product_id);
+        $this->productsModel->deleteProducts($product_id);
+        return response()->json($product_id, 200);
     }
 }

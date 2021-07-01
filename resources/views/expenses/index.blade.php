@@ -30,9 +30,7 @@
                     @csrf
                     {{method_field('DELETE')}}
                     <button class="btn btn-danger btn-sm" type="submit" ><i class="fas fa-trash"></i></button>
-
                 </form>
-
             </td>
         </tr>
             

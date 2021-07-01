@@ -22,7 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/products/{category_id}',[ProductsController::class,'show']);
+Route::get('/products/{category_id}/{id}',[ProductsController::class,'edit']);
 Route::post('/products',[ProductsController::class,'store']);
+Route::delete('/products/{product_id}',[ProductsController::class,'destroy']);
 Route::get('/employees/{id}', [EmployeesController::class,'show']);
 Route::get('/employees', [EmployeesController::class,'getEmployees']);
 

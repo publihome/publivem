@@ -3,8 +3,6 @@
 @section('content')
 <h2 class="text-center">{{$categoryName[0]}}</h2>
 
-
-
 <div class="table" id="table">
     <table class="table">
         <thead >
@@ -16,7 +14,6 @@
           
         </tbody>
       </table>
-
 </div>
 
 <div class="btn-add">
@@ -26,6 +23,3 @@
 
 @include('template.modal')
 @endsection
-
-
-{{-- <script src="{{asset('js/products.js')}}"></script> --}}

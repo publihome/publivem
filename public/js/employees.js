@@ -25,6 +25,7 @@ function getDataEmployee(){
 }
 
 function putDataEmployee(data){
-    let name = document.getElementById("name").value = data.name
-    let lastname = document.getElementById("lastname").value = data.lastname
+    for(let i in data ){
+        document.getElementById(i) ? document.getElementById(i).value = data[i] : ""
+    }
 }

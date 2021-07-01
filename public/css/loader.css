@@ -1,0 +1,19 @@
+.loader-content{
+    width: 100%;
+    background: white;
+    position: fixed;
+    height: 100%;
+}
+#loader{
+    display: none;
+}
+
+.loader-img{
+    position: fixed;
+    top:40%;
+    bottom: 60%;
+    left: 50%;
+    right: 50%;
+    width: 200px;
+}
+

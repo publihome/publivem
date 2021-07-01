@@ -49,6 +49,15 @@ class Products extends Model
 
     }
 
+    public function getProductsByIdAndIdCategory($category_id, $product_id){
+        $sql = DB::table('products')
+                ->where('products.category_id', "=", $category_id)
+                ->where('products.id', "=", $product_id)
+                ->get();
+                return $sql;
+
+    }
+
     public function getAtributtesbycategory($category_id){
         $sql = DB::table('attributes_by_product')
                 ->join('attributes', 'attributes.id', "=", 'attributes_by_product.attribute_id') 
@@ -58,6 +67,30 @@ class Products extends Model
                 ->select('products.id', 'attributes_by_product.value', 'attributes.name as attributeName')
                 ->get();
                 return $sql;
+    }
+
+    public function getAtributtesbyIdAndIdCategory($category_id,$product_id){
+        $sql = DB::table('attributes_by_product')
+                ->join('attributes', 'attributes.id', "=", 'attributes_by_product.attribute_id') 
+                ->join('products', "products.id", "=", "attributes_by_product.product_id")
+                ->where('products.id', "=", $product_id)
+                ->select('products.id', 'attributes_by_product.value', 'attributes.name as attributeName')
+                ->get();
+                return $sql;
 
     }
+
+    public function deleteAtributesProduct($id_prod){
+        DB::table('attributes_by_product')
+            ->where("product_id", "=", $id_prod)
+            ->delete();
+    }
+
+    public function deleteProducts($id_prod){
+        DB::table('products')
+            ->where("id", "=", $id_prod)
+            ->delete();
+    }
+
+
 }
