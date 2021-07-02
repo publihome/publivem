@@ -6,11 +6,26 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form id="formAddProduct" class="form">
-                @if($categoryName[0] == "Impresión en gran formato")
+            <form id="formAddProduct" class="form">             
+              <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" name="name" id="name" class="form-control">
+              </div>
+
+                <div class="form-group">
+                  <label for="price_men">Precio</label>
+                  <input type="text" name="price_men" id="price_men" class="form-control">
+              </div>
+              
+              <div class="form-group">
+                  <label for="unit">Unidad</label>
+                  <input type="text" name="unit" id="unit" class="form-control">
+              </div>
+
+                @if($categoryName[0] == "Impresión en gran formato" || $categoryName[0] == "Impresión en alta deficion, con tintas ecológicas" || $categoryName[0] == "Instalación de vinil, vinil microperforado y vinil de corte")
                 @include('template.forms.impresionForm')
                     
-                @elseif($categoryName[0] == "Instalación de vinil, vinil microperforado y vinil de corte")
+                @elseif($categoryName[0] == "Instalación de vinil, vinil microperforado y vinil de corte en superficies")
                 @include('template.forms.instalacionForm')
                     
                 @endif

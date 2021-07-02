@@ -14,6 +14,7 @@ const TableEsp = {
     "unit": "Unidad",
     "descripcion": "Descripcion",
     "aplicaciones": "Aplicaciones",
+    "cliente_proporciona": "Cliente proporciora",
     "Opciones": "Opciones",
 }
 
@@ -36,7 +37,7 @@ function sendInfo(formData){
         },
     })
     .then(res => res.json()) 
-    .then(data => console.log(data)) 
+    .then(data => getProductsByCategory()) 
 }
 
 function getProductsByCategory(){
@@ -47,6 +48,11 @@ function getProductsByCategory(){
     .then(response => response.json())
     .then(data => {
     productsdata = joinData(data)
+    if(productsdata == ""){
+        document.getElementById('loader').style.display = "none"
+
+        return 0;
+    }
 
         createTable()
     })
@@ -88,7 +94,6 @@ function createTable(){
     }
     tr.innerHTML += `<th>opciones</th>`
     createBodyTable()
-
      
 }
 
