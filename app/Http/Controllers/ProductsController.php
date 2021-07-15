@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
+
 class ProductsController extends Controller
 {
     /**
@@ -27,7 +28,14 @@ class ProductsController extends Controller
     }
 
     public function producstByCategory($id){
+
         $data["categoryName"]= $this->productsModel->getNameCategory($id);
+        if(count($data["categoryName"]) == 0){
+            return redirect('products_by_category')->with('error','Lo siento, no existe esa categoria');
+
+        }
+        $data["papers"] = $this->productsModel->getPapers();
+        
 
         return view('products.products',$data);
     }
@@ -51,18 +59,22 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         //
-        $dataProduct = $request->only('category_id','name','price_men', 'unit');
-        $dataattrib = $request->except('category_id','name','price_men', 'unit');
+        
+        if($request->has('papel_id')){
+            $dataProduct = $request->input();
+        }else{
+            $dataProduct = $request->only('category_id','name','price_men', 'unit');
+            $dataattrib = $request->except('category_id','name','price_men', 'unit');
+        }
+
 
         $this->productsModel->addProduct($dataProduct);
         $id_product = Products::latest('id')->first();
-       $at = array();
-        foreach($dataattrib as $attr => $item){
-
-            // array_push($at, $attr);
-            // array_push($at, $this->productsModel->getAttrbyName($attr));
-            $id_attrib = $this->productsModel->getAttrbyName($attr);
-            $this->productsModel->insertAttr($id_attrib[0],$id_product->id,$item);
+        if(isset($dataattrib)){
+            foreach($dataattrib as $attr => $item){
+                $id_attrib = $this->productsModel->getAttrbyName($attr);
+                $this->productsModel->insertAttr($id_attrib[0],$id_product->id,$item);
+            }
         }
         return response()->json('ok', 200);
 
@@ -111,11 +123,12 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request, $id)
     {
         //
+        $req = $request->only('category_id','name','price_men', 'unit');
+        return response()->json($req, 200);
     }
-
     /**
      * Remove the specified resource from storage.
      *

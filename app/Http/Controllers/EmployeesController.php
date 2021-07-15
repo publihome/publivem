@@ -16,7 +16,7 @@ class EmployeesController extends Controller
     public function index()
     {
         //
-        $data['employees'] = Employees::all();
+        $data['employees'] = Employees::where('remove', false)->get();
         return view('employees.index',$data);
     }
 
@@ -94,7 +94,7 @@ class EmployeesController extends Controller
      */
     public function destroy($id)
     {
-        Employees::destroy($id);
+        Employees::where('id', '=', $id)->update(['remove' => true]);
         return redirect('employees')->with('message', 'Empleado eliminado con exito');
         //
     }

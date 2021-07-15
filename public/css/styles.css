@@ -25,3 +25,24 @@
     margin: 0;
 
 }
+
+.metadata > p{
+    margin: 0;
+    font-size: 14px;
+}
+
+.head-sale-details b{
+    color:steelblue
+}
+
+.bg-red{
+    background: rgba(255, 1, 1, 0.2)!important;
+}
+
+.bg-gray {
+    background: rgba(170, 169, 169, 0.462)!important;
+}
+
+.bg-blue{
+    background: rgba(111, 159, 223, 0.477)!important;
+}

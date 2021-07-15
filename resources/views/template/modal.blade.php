@@ -6,7 +6,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form id="formAddProduct" class="form">             
+            <form id="formAddProduct" class="form">       
+              @if ($categoryName[0] == "Impresión laser a color")
+                @include('template.forms.impLaserForm')
+              @else
+
               <div class="form-group">
                 <label for="name">Nombre</label>
                 <input type="text" name="name" id="name" class="form-control">
@@ -27,7 +31,15 @@
                     
                 @elseif($categoryName[0] == "Instalación de vinil, vinil microperforado y vinil de corte en superficies")
                 @include('template.forms.instalacionForm')
+
+                @elseif($categoryName[0] == "Precios de fabricacion, instalación de anuncios luminosos")
+                @include('template.forms.fabricacionForm')
+
+                @elseif($categoryName[0] == "Trabajos de diseño")
+                @include('template.forms.disenoForm')
                     
+                @endif
+
                 @endif
 
           

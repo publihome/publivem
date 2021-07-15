@@ -1,7 +1,18 @@
+*{
+    padding: 0px;
+}
+
+
+.navbar{
+    z-index: 10px;
+    height: 60px;
+}
+
 .nav-left{
     background: #212529;
     color: white;
-    height: 100vh;
+    top:60px;
+    height: calc(100vh - 80px);
     position: fixed;
     left: 0px;
 }
@@ -10,5 +21,16 @@
     color: white;
     padding-left: 10px;
     padding-right: 10px;
+}
 
+.nav-link:hover{
+    color: teal;
+    border-bottom: 3px solid teal;
+}
+
+
+
+.active-link{
+
+    border-bottom: 3px solid teal;
 }

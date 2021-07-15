@@ -1,0 +1,23 @@
+###
+GET http://localhost:8000/api/getSales HTTP/1.1
+
+###
+
+
+POST http://localhost:8000/api/getInformation
+content-type: application/json 
+
+{
+    "from": "10-07-2021",
+    "to": "14-07-2021"
+}
+
+###
+
+POST http://localhost:8000/api/getInformation
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}

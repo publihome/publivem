@@ -1,11 +1,15 @@
 
 const table= document.getElementById('table');
 let form = document.getElementById("formAddProduct")
+let modal = document.getElementById("modalForm")
+let myModal = new bootstrap.Modal(modal)
+
 const path = window.location.href
 let c = path.lastIndexOf('/')
 let id_category = path.slice(c+1,c+2)
 let urlbase = "http://localhost:8000/api/products" 
 let btnEdit 
+let id_selected
 let productsdata = []
 const TableEsp = {
     "name": "Nombre",
@@ -14,21 +18,26 @@ const TableEsp = {
     "unit": "Unidad",
     "descripcion": "Descripcion",
     "aplicaciones": "Aplicaciones",
+    "entregamos": "Entregamos",
     "cliente_proporciona": "Cliente proporciora",
     "Opciones": "Opciones",
 }
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    let formdata = new FormData(form)
+    let formdata = new FormData(form)  
     formdata.set("category_id", id_category)
-    sendInfo(formdata)
+    if(e.target.id == "formAddProduct"){
+        sendInfo(formdata)
+    }else{
+        updateData(formdata)
+    }
 
 })
 
 
 function sendInfo(formData){
-
+    
     fetch(urlbase,{
         method: 'post',
         body: formData,
@@ -38,6 +47,25 @@ function sendInfo(formData){
     })
     .then(res => res.json()) 
     .then(data => getProductsByCategory()) 
+
+     myModal.hide()
+}
+
+function updateData(formData){
+    
+    fetch(`${urlbase}/${id_selected}`,{
+        method: 'put',
+        body: {'data':formData},
+        Headers:{
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(resp => resp.json()) 
+    .catch(err => console.error(err))
+    .then(data => console.log(data)) 
+
+     myModal.hide()
+
 }
 
 function getProductsByCategory(){
@@ -53,6 +81,8 @@ function getProductsByCategory(){
 
         return 0;
     }
+    document.getElementById('loader').style.display = "none"
+
 
         createTable()
     })
@@ -125,7 +155,7 @@ function createBodyTable(){
 }
 
 function editModal(id){
-    console.log(id)
+    id_selected = id
     fetch(`${urlbase}/${id_category}/${id}`)
     .then(response => response.json())
     .then(data => {
@@ -134,23 +164,17 @@ function editModal(id){
     })
 }
 
+
+
 let frmupdate 
 
 function pushDataOnForm(product){
-    console.log(product)
     for(let i in product[0]){
         document.getElementById(i) ? document.getElementById(i).value = product[0][i]: ""
         document.querySelector(".form").setAttribute("id", "formEditProduct")
     }   
-    frmupdate = document.getElementById("formEditProduct")
-
-
-    frmupdate.addEventListener("submit", (e) => {
-        e.preventDefault()
-        let formData = new FormData(frmupdate)
-        console.log(formData.get("name"))
-    
-    })
+    form = document.getElementById("formEditProduct")
+  
 }
 
 
@@ -164,15 +188,6 @@ function deleteProduct(id){
     .then(response => response.json())
     .then(res => getProductsByCategory())
 }
-
-
-
-
-
-
-
-
-
 
 
 getProductsByCategory()

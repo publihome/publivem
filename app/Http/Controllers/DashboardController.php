@@ -12,6 +12,12 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $DashboardModel;
+
+    public function __construct(){
+        $this->DashboardModel = new Dashboard;
+    }
+
     public function index()
     {
         //
@@ -23,6 +29,9 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+   
+
     public function create()
     {
         //
@@ -36,6 +45,10 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
+
+        $data = $request->only('to');
+        // return response()->json("hola no sirvo", 200);
+        return response()->json($data, 200);
         //
     }
 
@@ -45,7 +58,7 @@ class DashboardController extends Controller
      * @param  \App\Models\Dashboard  $dashboard
      * @return \Illuminate\Http\Response
      */
-    public function show(Dashboard $dashboard)
+    public function show()
     {
         //
     }
@@ -83,4 +96,13 @@ class DashboardController extends Controller
     {
         //
     }
+
+
+    public function getInformation(Request $request){
+        $data = $request->input();
+        return $data['from'];
+
+    }
+
+
 }

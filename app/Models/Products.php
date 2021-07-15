@@ -92,5 +92,10 @@ class Products extends Model
             ->delete();
     }
 
+    public function getPapers(){
+        $sql = DB::table('papers')->get();
+        return $sql;
+    }
+
 
 }
