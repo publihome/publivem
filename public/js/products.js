@@ -3,6 +3,7 @@ const table= document.getElementById('table');
 let form = document.getElementById("formAddProduct")
 let modal = document.getElementById("modalForm")
 let myModal = new bootstrap.Modal(modal)
+let btnAdd = document.getElementById('btn_add')
 
 const path = window.location.href
 let c = path.lastIndexOf('/')
@@ -23,18 +24,32 @@ const TableEsp = {
     "Opciones": "Opciones",
 }
 
+function clearInput(){
+    let inputs = document.querySelectorAll('.form-control')
+    inputs.forEach(input => {
+        input.value = "" 
+    });
+}
+
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     let formdata = new FormData(form)  
     formdata.set("category_id", id_category)
     if(e.target.id == "formAddProduct"){
         sendInfo(formdata)
-    }else{
+    }
+    if(e.target.id == "formEditProduct"){
         updateData(formdata)
     }
 
 })
 
+btnAdd.addEventListener('click', (e) => {
+    e.preventDefault()
+    document.querySelector(".form").setAttribute("id", "formEditProduct")
+    clearInput()
+    myModal.show()
+})
 
 function sendInfo(formData){
     
@@ -46,31 +61,28 @@ function sendInfo(formData){
         },
     })
     .then(res => res.json()) 
+    // .then(data => console.log(data)) 
     .then(data => getProductsByCategory()) 
 
      myModal.hide()
 }
 
 function updateData(formData){
+    console.log(formData.get('name'))
+    formData.set('_method','put')
     
     fetch(`${urlbase}/${id_selected}`,{
-        method: 'put',
-        body: {'data':formData},
-        Headers:{
-            'Content-Type': 'application/json'
-        },
+        method: 'post',
+        body: formData,
+      
     })
     .then(resp => resp.json()) 
-    .catch(err => console.error(err))
     .then(data => console.log(data)) 
-
-     myModal.hide()
-
+    myModal.hide()
 }
 
 function getProductsByCategory(){
     document.getElementById('loader').style.display = "block"
-
 
     fetch(`${urlbase}/${id_category}`)
     .then(response => response.json())
@@ -163,8 +175,6 @@ function editModal(id){
         pushDataOnForm(info)
     })
 }
-
-
 
 let frmupdate 
 

@@ -19,6 +19,7 @@
 
 .nav-left > a{
     color: white;
+    font-size: 14px;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -27,10 +28,37 @@
     color: teal;
     border-bottom: 3px solid teal;
 }
+.navbar-nav{
+    display: none;
+    background: #212529;
+    padding-left: 10px;
+    position: relative;
+}
 
 
 
 .active-link{
 
     border-bottom: 3px solid teal;
+}
+
+
+@media screen and (max-width: 752px) {
+
+    .nav-left{
+        background: #212529;
+        color: white;
+        top:60px;
+        height: calc(100vh - 80px);
+        position: fixed;
+        left: 0px;
+        display: none;
+    }
+
+    .navbar-nav{
+        display: block;
+        background: #212529;
+        padding-left: 10px;
+    }
+    
 }

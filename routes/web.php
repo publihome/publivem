@@ -28,7 +28,7 @@ Route::get('/', function () {
     
 });
 Route::get('/dashboard', [DashboardController::class,'index']);
-Route::resource('/products', ProductsController::class)->except(['index', 'update']);
+Route::resource('/products', ProductsController::class)->except(['index']);
 Route::resource('/employees', EmployeesController::class);
 Route::resource('/expenses', ExpensesController::class);
 Route::get('/products_by_category', [ProductsController::class,'index']);

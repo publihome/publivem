@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/dashboard', [DashboardController::class, 'store']);
+Route::resource('/dashboard', DashboardController::class);
 
 Route::get('/products/{category_id}',[ProductsController::class,'show']);
 Route::get('/products/{category_id}/{id}',[ProductsController::class,'edit']);

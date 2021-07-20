@@ -97,5 +97,24 @@ class Products extends Model
         return $sql;
     }
 
+    public function updateData($data, $id){
+        $sql = DB::table('products')
+            ->where('id','=',$id)
+            ->update($data);
+        return $sql;
+    }
+
+    public function getIdAtribute($attr){
+        $id = DB::table('attributes')->where('name', '=', $attr)->get('id');
+        return $id;
+    }
+
+    public function updateAttr($attr_id, $value , $product_id){
+        DB::table('attributes_by_product')
+        ->where('product_id', '=', $product_id)
+        ->where('attribute_id', '=', $attr_id)
+        ->update(['value' => $value ]);
+    }
+
 
 }

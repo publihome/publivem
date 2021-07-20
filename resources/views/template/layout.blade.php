@@ -26,6 +26,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
+            @include('template.navigation')
               
             </div>
           </div>

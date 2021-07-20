@@ -4,6 +4,7 @@ const formDate = document.getElementById('formDate')
 formDate.addEventListener('submit',(e) => {
     e.preventDefault()
     let formData = new FormData(formDate)
+
     getData(formData)
 })
 

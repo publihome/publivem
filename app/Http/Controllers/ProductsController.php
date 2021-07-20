@@ -67,7 +67,6 @@ class ProductsController extends Controller
             $dataattrib = $request->except('category_id','name','price_men', 'unit');
         }
 
-
         $this->productsModel->addProduct($dataProduct);
         $id_product = Products::latest('id')->first();
         if(isset($dataattrib)){
@@ -111,9 +110,6 @@ class ProductsController extends Controller
         $data["products"] = $this->productsModel->getProductsByIdAndIdCategory($category_id, $product_id);
         $data["attributes"] = $this->productsModel->getAtributtesbyIdAndIdCategory($category_id, $product_id);
         return response()->json($data, 200);
-        
-
-
     }
 
     /**
@@ -126,8 +122,18 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $req = $request->only('category_id','name','price_men', 'unit');
-        return response()->json($req, 200);
+        if($request->has('papel_id')){
+            $dataProduct = $request->except('_method');
+        }else{
+            $dataProduct = $request->only('category_id','name','price_men', 'unit');
+            $dataattrib = $request->except('category_id','name','price_men', 'unit', '_method');
+        }
+        foreach($dataattrib as $att => $value){
+             $idatt = $this->productsModel->getIdAtribute($att);
+             $update = $this->productsModel->updateAttr($idatt[0]->id, $value, $id);
+        }
+        $res = $this->productsModel->updateData($dataProduct, $id);
+        return response()->json($res, 200);
     }
     /**
      * Remove the specified resource from storage.

@@ -2,6 +2,7 @@
 @section('content')
 <div class="container">
     <form id="formDate">
+        @csrf
             <div class="d-flex justify-content-center align-items-center">
             <div class="form-group">
                 <label for="from">De</label>
