@@ -3,16 +3,27 @@ const btnAdd = document.getElementById('add')
 const btnAddSale = document.getElementById('addSale')
 let inputsToValidate = ["product_id","category_id", "amount", 'height', 'width']
 const formSales = document.getElementById('formVenta')
-
-
-
-
+const priceProductDiv = document.getElementById('priceProductDiv')
+const productDiv = document.getElementById('productDiv')
 
 category_id.addEventListener("change", (e)=> {
     let val = e.target.value 
     if(val == 0){
         return 0;
     } 
+    // if(val == 8){
+    //     hideHeightAndWidth()
+    //     productDiv.innerHTML = `
+    //     <label for="product">Producto</label>
+    //     <input type="text" class="form-control" id="product_id" name="product_id" >
+    //     `
+
+    //     priceProductDiv.innerHTML = `
+    //         <label>Precio del producto</label>
+    //         <input type="number" class="form-control" id="priceProduct" name="priceProduct">
+    //     `
+    //     return 0
+    // }
     if(val == 6 || val == 5){
         hideHeightAndWidth()
         if(val == 6){
@@ -22,6 +33,17 @@ category_id.addEventListener("change", (e)=> {
         showHeightAndWidth()  
         
     }
+    // console.log(document.getElementById('product_id').getAttribute('class') == 'form-select')
+    // priceProductDiv.innerHTML = "";
+
+    // productDiv.innerHTML = `
+    // <label for="product">Producto</label>
+    // <select name="product_id" id="product_id" class="form-select">
+    //     <option value="">Selecciona una categoria</option>
+            
+    // </select>
+    // `
+
 
     console.log(val)
     getProductsByCategoryId(val)

@@ -29,7 +29,7 @@
 
 
 <div class="col-md-3">
-    <div class="form-group">
+    <div class="form-group " id="productDiv">
         <label for="product">Producto</label>
         <select name="product_id" id="product_id" class="form-select">
             <option value="">Selecciona una categoria</option>
@@ -100,6 +100,10 @@
             <option value="2">Si</option>
         </select>
     </div>
+</div>
+
+<div class="col-md-3" id="priceProductDiv">
+
 </div>
 
 <hr class="my-3">

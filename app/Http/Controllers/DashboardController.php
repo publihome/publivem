@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dashboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class DashboardController extends Controller
 {
@@ -13,6 +14,7 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     private $DashboardModel;
+    private $dates;
 
     public function __construct(){
         $this->DashboardModel = new Dashboard;
@@ -21,6 +23,9 @@ class DashboardController extends Controller
     public function index()
     {
         //
+        if(!file_exists(public_path('storage'))){
+            Artisan::call('storage:link');
+        }
         return view('dashboard.index');
     }
 
@@ -46,63 +51,44 @@ class DashboardController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->only('to');
-        // return response()->json("hola no sirvo", 200);
+        $data = $request->input();
         return response()->json($data, 200);
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Dashboard  $dashboard
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Dashboard  $dashboard
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Dashboard $dashboard)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dashboard  $dashboard
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Dashboard $dashboard)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Dashboard  $dashboard
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Dashboard $dashboard)
-    {
         //
     }
 
 
     public function getInformation(Request $request){
-        $data = $request->input();
-        return $data['from'];
-
+        $dates = $request->except('_method');
+        $data['sales'] = $this->getSales($dates);
+        $data['employees'] = $this->getEmployees($dates);
+        $data['productsSales'] = $this->getProductsSales($dates);
+        $data['totalSales'] = $this->getAllsales($dates);
+        $data['totalExpenses'] = $this->getExpenses($dates);
+        return response()->json($data, 200);
     }
 
+    public function getSales($dates){
+        return $this->DashboardModel->getSales($dates);
+    }
+
+    public function getEmployees($dates){
+        return $this->DashboardModel->getEmployees($dates);
+    }
+
+    public function getProductsSales($dates){
+        return $this->DashboardModel->getProductsSales($dates);
+    }
+
+
+    public function getAllsales($dates){
+        return $this->DashboardModel->getAllsales($dates);
+    }
+
+    public function getExpenses($dates){
+        return $this->DashboardModel->getExpenses($dates);
+    }
+
+
+    
 
 }

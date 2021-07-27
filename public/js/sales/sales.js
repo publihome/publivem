@@ -4,11 +4,11 @@ const thead = document.getElementById('thead');
 const tBody = document.getElementById('tBody');
 const loader = document.getElementById('loader')
 
+const date = new Date()
+console.log(date)
 
 function getSales(){
     loader.style.display = "block"
-
-    console.log("algo")
     fetch(`${urlApi}/getSales`)
     .then(response => response.json())
     .then(sales => putDataOnTableIndex(sales))

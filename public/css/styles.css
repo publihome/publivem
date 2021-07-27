@@ -1,3 +1,14 @@
+:root{
+    --dark: #000000;
+    --bg: rgba(153, 153, 153, 0.473);
+    --white: #ffffff88;
+}
+
+body{
+    background: var(--bg)
+}
+
+
 .card-category{
     height: 250px;
     display: flex;
@@ -10,6 +21,9 @@
 
 }
 
+.target{
+    background: var(--white);
+}
 
 .btn-add{
     position: fixed;
@@ -45,4 +59,64 @@
 
 .bg-blue{
     background: rgba(111, 159, 223, 0.477)!important;
+}
+
+
+/* DASHBOARD */
+.content-number{
+    display: flex;  
+    justify-content: center;
+}
+
+.content-info{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.img-card{
+    width: 80px;
+    height: 80px;
+    display: flex;
+    margin: auto;
+}
+
+.content-number > .number{
+    background: var(--dark);
+    color: brown;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.grid-dashboard{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 250px;
+    grid-gap: 1rem;
+    grid-auto-flow: row dense;
+}
+
+
+.grid-dashboard > div{
+    border: 1px solid rgba(149, 186, 207, 0.5);
+    border-radius: 5px;
+}
+
+.titleCard{
+    margin: 0px;
+    padding: 10px;
+    text-align: center;
+}
+
+.chartSales{
+    width: 100%;
+}
+
+
+canvas{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    padding: 10px;
 }

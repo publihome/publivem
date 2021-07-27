@@ -68,7 +68,6 @@ function sendInfo(formData){
 }
 
 function updateData(formData){
-    console.log(formData.get('name'))
     formData.set('_method','put')
     
     fetch(`${urlbase}/${id_selected}`,{

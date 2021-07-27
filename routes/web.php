@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductsController;
@@ -24,14 +25,16 @@ use App\Http\Controllers\SalesController;
 // });
 
 Route::get('/', function () {
-    return redirect('/dashboard');
+    return redirect('/login');
     
 });
-Route::get('/dashboard', [DashboardController::class,'index']);
-Route::resource('/products', ProductsController::class)->except(['index']);
-Route::resource('/employees', EmployeesController::class);
-Route::resource('/expenses', ExpensesController::class);
-Route::get('/products_by_category', [ProductsController::class,'index']);
-Route::get('/products/category/{category_id}', [ProductsController::class,'producstByCategory']);
+Route::get('/login', [Controller::class, 'login'])->name('login');
+Route::POST('/login', [Controller::class, 'validate']);
+Route::get('/dashboard', [DashboardController::class,'index'])->middleware('auth');
+Route::resource('/products', ProductsController::class)->except(['index'])->middleware('auth');;
+Route::resource('/employees', EmployeesController::class)->middleware('auth');;
+Route::resource('/expenses', ExpensesController::class)->middleware('auth');;
+Route::get('/products_by_category', [ProductsController::class,'index'])->middleware('auth');;
+Route::get('/products/category/{category_id}', [ProductsController::class,'producstByCategory'])->middleware('auth');;
 
-Route::resource('/sales', SalesController::class);
+Route::resource('/sales', SalesController::class)->middleware('auth');;
