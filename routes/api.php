@@ -42,3 +42,4 @@ Route::patch('/employees', [EmployeesController::class,'update']);
 
 Route::resource('/sales', SalesController::class)->except('getSales');
 Route::get('/getSales', [SalesController::class,'getSales']);
+Route::post('/getSales', [SalesController::class,'getSalesByDate']);

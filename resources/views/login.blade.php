@@ -25,12 +25,18 @@
                         @csrf
                             <div class="from-group">
                                 <label for="email">Correo electrónico</label>
-                                <input type="email" class="form-control" name="email" required>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email">
+                                @error('email')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="from-group">
                                 <label for="contraseña">Contraseña</label>
-                                <input type="password" class="form-control" name="password" required>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                                @error('password')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <button class="btn btn-success btn-block mt-3" type="submit">Ingresar</button>

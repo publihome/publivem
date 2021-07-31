@@ -1,11 +1,12 @@
-:root{
-    --dark: #000000;
-    --bg: rgba(153, 153, 153, 0.473);
-    --white: #ffffff88;
-}
+@import url('./colors.css');
 
 body{
-    background: var(--bg)
+    background: var(--gray);
+}
+
+
+.logo-img{
+    width: 80px;
 }
 
 
@@ -46,7 +47,7 @@ body{
 }
 
 .head-sale-details b{
-    color:steelblue
+    color: var(--steelblue);
 }
 
 .bg-red{
@@ -83,10 +84,9 @@ body{
 }
 
 .content-number > .number{
-    background: var(--dark);
-    color: brown;
     padding: 10px;
     border-radius: 50%;
+
 }
 
 .grid-dashboard{
@@ -99,7 +99,7 @@ body{
 
 
 .grid-dashboard > div{
-    border: 1px solid rgba(149, 186, 207, 0.5);
+    border: 1px solid var(--dash);
     border-radius: 5px;
 }
 
@@ -119,4 +119,33 @@ canvas{
     height: 200px;
     object-fit: cover;
     padding: 10px;
+}
+
+.amount-data > p{
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 20px;
+    background: var(--blackNav);
+    color: var(--white);
+    margin: 0px;
+    font-size: 12px;
+
+}
+
+/* Profile */
+
+.content-profile{
+    border: 1px solid #0005;
+    padding: 20px;
+
+}
+
+.card-profile{
+    margin-top: 30px;
+    padding-left: 10px;
+}
+
+.card-profile p{
+    margin: 10px;
+
 }

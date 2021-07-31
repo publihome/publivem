@@ -30,6 +30,11 @@ Route::get('/', function () {
 });
 Route::get('/login', [Controller::class, 'login'])->name('login');
 Route::POST('/login', [Controller::class, 'validate']);
+Route::get('/logout', [Controller::class, 'logout']);
+Route::get('/profile', [Controller::class, 'profile'])->middleware('auth');
+Route::patch('/profile/{userId}', [Controller::class, 'update'])->middleware('auth');
+
+
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware('auth');
 Route::resource('/products', ProductsController::class)->except(['index'])->middleware('auth');;
 Route::resource('/employees', EmployeesController::class)->middleware('auth');;

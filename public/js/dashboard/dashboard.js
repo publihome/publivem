@@ -4,6 +4,14 @@ let toInput = document.getElementById('to')
 let fromInput = document.getElementById('from')
 let allSales = document.getElementById('allSales')
 let allExpenses = document.getElementById('allExpenses')
+let inputsForm = document.querySelectorAll('.form-control')
+
+
+inputsForm.forEach(input => {
+    input.addEventListener('click',(e)=> {
+        e.target.classList.remove('is-invalid')
+    });
+})
 
 function getDateToday(){
     let today = new Date()
@@ -17,8 +25,39 @@ function getDateToday(){
 }
 
 
+function inputIsValid(input){
+    let inputsInvalids = 0
+    if(Array.isArray(input)){
+        input.forEach(element => {
+            if(element.value == ""){
+                element.classList.add('is-invalid')
+                inputsInvalids++
+            }
+        });
+    }
+    if(input == ""){
+        element.classList.add('is-invalid')
+        inputsInvalids++
+    }
+    if( inputsInvalids > 0 ){
+        Swal.fire('algunos campos no se rellenaron correctamente')
+        return false;
+    }
+
+    if(fromInput.value > toInput.value){
+        Swal.fire('las fechas son incorrectas')
+        return false
+    }
+
+    return true
+}
+
+
 formDate.addEventListener('submit',(e) => {
     e.preventDefault()
+    if(!inputIsValid([fromInput, toInput])){
+        return 0;
+    }
     let formData = new FormData(formDate)
     getData(formData)
 })
@@ -41,14 +80,13 @@ function postSales(totalSales, totalExpenses){
     console.log(totalSales)
     console.log(totalExpenses[0].Expense)
     allSales.innerHTML += '<i class="fas fa-caret-up text-success"></i> '
-    // allSales.style.color += 'green'
     allSales.innerHTML += totalSales[0].amountAll != null ? "$ "+  totalSales[0].amountAll : "$ "+ 0
     allExpenses.innerHTML += '<i class="fas fa-caret-down"></i> '
     allExpenses.innerHTML +=  totalExpenses[0].Expense != null  ? "$ "+ totalExpenses[0].Expense : "$ "+ 0
 }
 
 function getData(formData){
-            
+    document.getElementById('loader').style.display = 'block'
     fetch(`${url}/dashboard`,{
         body:formData,
         method: 'POST',
@@ -60,6 +98,9 @@ function getData(formData){
         postSales(data.totalSales, data.totalExpenses)
         drawChartEmployes(data.employees)
         drawChartSales(data.sales)
+        document.getElementById('dashboard').classList.remove('d-none')
+        document.getElementById('loader').style.display = 'none'
+
     })
 }
 

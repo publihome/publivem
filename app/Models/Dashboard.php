@@ -59,7 +59,6 @@ class Dashboard extends Model
         return $sql;
     }
 
-
     public function getExpenses($date){
         $expenses = DB::table('expenses')
         ->select(DB::raw('sum(amount) as Expense'))
@@ -69,4 +68,7 @@ class Dashboard extends Model
 
         return $expenses;
     }
+
+
+    
 }

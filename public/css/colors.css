@@ -1,0 +1,13 @@
+:root{
+    --green: rgb(0, 128, 128);
+    --black: #000000;
+    --blackNav: #212529;
+    --white: hsl(0, 0%, 100%);
+    --gray: rgba(153, 153, 153, 0.473);
+    --whiteDark: #ffffff88;
+    --steelblue: rgb(70, 130, 180);
+    --brown: rgb(165, 42, 42);
+    --dash: rgba(149, 186, 207, 0.5);
+    
+}
+

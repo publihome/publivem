@@ -37,8 +37,8 @@
           </tr>
       </table>
 </div>
-<script src="{{asset('js/ventasIteraccionDom.js')}}"></script>
-<script src="{{asset('js/ventas.js')}}"></script>
+<script src="{{asset('js/sales/ventasIteraccionDom.js')}}"></script>
+<script src="{{asset('js/sales/ventas.js')}}"></script>
 
 
 @endsection

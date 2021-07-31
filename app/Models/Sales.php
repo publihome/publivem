@@ -43,5 +43,17 @@ class Sales extends Model
         return $sale;
     }
 
+    public function getSalesByDate($date){
+        $sales = DB::table('sales')
+        ->join('employees', 'employees.id', '=', 'sales.employe_id')
+        ->orderBy('created_at','desc')
+        ->select('employees.name as employe','employees.lastname','sales.*')
+        ->where('sales.created_at', '>', $date['from'].' 00:00:00')
+        ->where('sales.created_at', '<', $date['to'].' 23:55:55')
+        ->get();
+
+        return $sales;
+    }
+
 
 }

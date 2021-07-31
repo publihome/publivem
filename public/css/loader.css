@@ -1,7 +1,9 @@
+@import url('./colors.css');
+
 .loader-content{
     width: 100%;
-    background: white;
-    position: fixed;
+    background: transparent;
+    position: relative;
     height: 100%;
 }
 #loader{
@@ -14,6 +16,7 @@
     bottom: 60%;
     left: 50%;
     right: 50%;
-    width: 200px;
+    width: 65px;
+    background: var(--white);
 }
 

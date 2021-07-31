@@ -4,5 +4,6 @@
     <a class="nav-link {{ Request::is('expenses') ? 'active-link' : '' }}" href="{{url('/expenses')}}"><i class="fas fa-cart-arrow-down"></i> Gastos</a>
     <a class="nav-link {{ Request::is('sales') ? 'active-link' : '' }}" href="{{url('/sales')}}"> <i class="fas fa-cart-arrow-down"></i> Ventas</a>
     
+    <a class="nav-link {{ Request::is('profile') ? 'active-link' : '' }}"" id="profile" href="{{url('/profile')}}"> <i class="fas fa-user"></i> Profile</a>
     <a class="nav-link" id="logout_button" href="{{url('/logout')}}"> <i class="fas fa-sign-out-alt"></i> Salir</a>
      

@@ -20,7 +20,7 @@
 </div>
 
 
-<div class="container mt-5">
+<div class="container mt-5 d-none" id="dashboard">
     <div class="grid-dashboard">
         <div class="countSales target" id="Conutsales">
             <p class="titleCard">Numero de ventas</p>
@@ -35,11 +35,11 @@
             <img src="{{asset('storage/img/dashboard/carshop.png')}}" alt="" class="img-card">
             <div class="content-info">
                 <div class="content-number">
-                    <span class="number text-sucess" id="allSales"> </span>
+                    <span class="number text-success" id="allSales"> </span>
                 </div>
     
                 <div class="content-number">
-                    <span class="number" id="allExpenses"> </span>
+                    <span class="number text-danger" id="allExpenses"> </span>
                 </div>
             </div>
         </div>

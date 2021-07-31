@@ -149,4 +149,12 @@ class SalesController extends Controller
         $sales = $this->Sales->getSales();
         return response()->json($sales, 200);
     }
+
+    public function getSalesByDate( Request $request){
+        $req = $request->except('method');
+        $sales = $this->Sales->getSalesByDate($req);
+        return response()->json($sales, 200);
+    }
+
+
 }

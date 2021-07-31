@@ -1,12 +1,9 @@
+@import url('./colors.css');
+
+
 *{
     padding: 0px;
 }
-
-:root{
-    --green: rgb(0, 128, 128);
-}
-
-
 
 .navbar{
     z-index: 10px;
@@ -14,16 +11,16 @@
 }
 
 .nav-left{
-    background: #212529;
-    color: white;
-    top:60px;
+    background: var(--blackNav);
+    color: var(--white);
+    top: 60px;
     height: calc(100vh - 80px);
     position: fixed;
     left: 0px;
 }
 
 .nav-left > a{
-    color: white;
+    color: var(--white);;
     font-size: 14px;
     padding-left: 10px;
     padding-right: 10px;
@@ -42,7 +39,7 @@
 }
 .navbar-nav{
     display: none;
-    background: #212529;
+    background: var(--black);
     padding-left: 10px;
     position: relative;
 }
@@ -56,8 +53,8 @@
 @media screen and (max-width: 752px) {
 
     .nav-left{
-        background: #212529;
-        color: white;
+        background: var(--black);
+        color: var(--white);;
         top:60px;
         height: calc(100vh - 80px);
         position: fixed;
@@ -69,6 +66,7 @@
         display: block;
         background: #212529;
         padding: 10px;
+        
     }
     
 }
